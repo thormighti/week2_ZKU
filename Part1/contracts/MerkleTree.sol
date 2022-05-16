@@ -11,6 +11,14 @@ contract MerkleTree is Verifier {
 
     constructor() {
         // [assignment] initialize a Merkle tree of 8 with blank leaves
+        hashes = [0,0,0,0,0,0,0,0];
+        
+         
+           for (uint i = 0; i < 8  ; i++) {
+            hashes.push(PoseidonT3.poseidon([hashes[i], hashes[i+1]]));
+        }
+        root = hashes[];
+
     }
 
     function insertLeaf(uint256 hashedLeaf) public returns (uint256) {
